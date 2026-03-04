@@ -1,10 +1,776 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Cleoo Beeha</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cleoo Beeha · Cosméticos Conscientes & Transformación</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F4EE;--bg2:#F1EDE4;--bg3:#EAE4D8;--card:#FDFCF9;
+  --border:#E2DDD3;--border2:#CEC8BA;
+  --ink:#28231A;--mid:#544D42;--soft:#7A7268;--muted:#B2AAA0;
+  --ir1:#B57EC4;--ir2:#6FA4D0;--ir3:#5EBDB2;--ir4:#C8A06A;--ir5:#C97292;--ir6:#8FBF68;
+  --green:#25D366;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── TYPE HELPERS ── */
+.serif{font-family:'Playfair Display',serif}
+.mono{font-family:'Space Mono',monospace}
+.irt{
+  background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2,#8FBF68,#C8A06A,#C97292,#B57EC4);
+  background-size:250%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:irs 8s linear infinite;
+}
+@keyframes irs{0%{background-position:0%}100%{background-position:250%}}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(247,244,238,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:68px;
+}
+.logo{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;
+  letter-spacing:.5px;color:var(--ink);text-decoration:none;
+}
+.logo span{
+  background:linear-gradient(90deg,#C8A06A,#B57EC4,#6FA4D0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nl{display:flex;gap:28px;list-style:none}
+.nl a{font-size:.72rem;font-weight:500;color:var(--soft);text-decoration:none;letter-spacing:2.5px;text-transform:uppercase;transition:color .2s}
+.nl a:hover{color:var(--ink)}
+.nwa{
+  display:flex;align-items:center;gap:7px;text-decoration:none;
+  font-size:.72rem;font-weight:600;padding:9px 22px;border-radius:40px;
+  background:var(--ink);color:var(--bg);letter-spacing:1.5px;text-transform:uppercase;transition:all .25s;
+}
+.nwa:hover{background:var(--mid);transform:translateY(-1px)}
+.ntog{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.ntog span{display:block;width:22px;height:1.5px;background:var(--ink)}
+.mmenu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 28px;flex-direction:column;z-index:199}
+.mmenu.open{display:flex}
+.mmenu a{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border)}
+.mmenu a:last-child{border-bottom:none;color:var(--ink)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:130px 24px 100px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#FFFFFE 0%,#F4EFE5 45%,#EDE5D5 100%);
+}
+.horb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px)}
+.horb1{width:580px;height:580px;background:radial-gradient(circle,rgba(181,126,196,.18),transparent 70%);top:-160px;left:-160px}
+.horb2{width:480px;height:480px;background:radial-gradient(circle,rgba(111,164,208,.16),transparent 70%);bottom:-80px;right:-120px}
+.horb3{width:320px;height:320px;background:radial-gradient(circle,rgba(94,189,178,.13),transparent 70%);top:35%;left:55%}
+.bot{position:absolute;pointer-events:none;animation:sway ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-7px)}}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+.eyb{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:48px;opacity:0;animation:fu .8s .2s forwards}
+.hero h1{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(3.4rem,9vw,7.5rem);line-height:.97;letter-spacing:-2px;
+  color:var(--ink);max-width:840px;opacity:0;animation:fu .8s .35s forwards;position:relative;z-index:1;
+}
+.hero h1 em{font-style:italic;font-weight:400;display:block}
+.hrule{width:48px;height:1px;background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2);margin:40px auto;opacity:0;animation:fu .8s .52s forwards}
+.hsub{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:1.2rem;line-height:1.85;color:var(--soft);max-width:420px;
+  margin-bottom:52px;opacity:0;animation:fu .8s .62s forwards;
+}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fu .8s .78s forwards}
+.bdk{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.72rem;font-weight:600;padding:15px 38px;border-radius:40px;background:var(--ink);color:var(--bg);letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s}
+.bdk:hover{background:var(--mid);transform:translateY(-2px)}
+.bol{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-size:.72rem;font-weight:500;padding:14px 36px;border-radius:40px;background:transparent;color:var(--ink);letter-spacing:2px;text-transform:uppercase;border:1.5px solid var(--border2);cursor:pointer;transition:all .3s}
+.bol:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+/* ── LAYOUT ── */
+.sec{padding:110px 24px;position:relative;overflow:hidden}
+.sc2{background:var(--bg2)}.sc3{background:var(--bg3)}
+.con{max-width:1060px;margin:0 auto;position:relative;z-index:1}
+.slb{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.stl{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.1;color:var(--ink);margin-bottom:18px;letter-spacing:-.5px}
+.ssb{font-size:.92rem;line-height:1.95;color:var(--soft);max-width:480px;font-weight:400}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.ruir{height:1px;background:linear-gradient(90deg,transparent,rgba(181,126,196,.35),rgba(111,164,208,.35),rgba(94,189,178,.3),transparent)}
+
+/* ── INGREDIENT STRIP ── */
+.istrip{display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card)}
+.ii{flex:1;padding:32px 16px;text-align:center;border-right:1px solid var(--border);position:relative;overflow:hidden;cursor:default;transition:background .25s}
+.ii:last-child{border-right:none}
+.ii:hover{background:var(--bg)}
+.ii-em{font-size:1.6rem;display:block;margin-bottom:8px;opacity:.75}
+.ii-nm{font-family:'Playfair Display',serif;font-size:.92rem;color:var(--ink);margin-bottom:3px}
+.ii-nt{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase}
+.ii-line{position:absolute;bottom:0;left:0;right:0;height:2px;transform:scaleX(0);transition:transform .3s;background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2)}
+.ii:hover .ii-line{transform:scaleX(1)}
+
+/* ── FEATURED ── */
+.fwrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px}
+.fimg{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:7rem;position:relative;overflow:hidden;background:var(--bg2);border:1px solid var(--border)}
+.fimg::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(181,126,196,.1),rgba(111,164,208,.09),rgba(94,189,178,.08))}
+.fbadge{position:absolute;top:18px;left:18px;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--soft);border:1px solid var(--border2);padding:6px 14px;background:var(--card)}
+.ftag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.fh3{font-family:'Playfair Display',serif;font-weight:700;font-size:2.4rem;color:var(--ink);margin-bottom:16px;line-height:1.1;letter-spacing:-.3px}
+.fp{font-size:.9rem;line-height:1.95;color:var(--soft);margin-bottom:26px}
+.fprice{font-family:'Playfair Display',serif;font-weight:700;font-size:2rem;color:var(--ink);margin-bottom:34px}
+.fprice span{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);font-weight:300;margin-left:5px}
+
+/* ── CATALOG ── */
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:52px}
+.pc{background:var(--card);position:relative;overflow:hidden;border:1px solid var(--border);transition:all .32s;cursor:pointer}
+.pc:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(40,35,26,.07);border-color:var(--border2);z-index:2}
+.pci{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:3.8rem;background:var(--bg2);position:relative;overflow:hidden}
+.pcibg{position:absolute;inset:0;opacity:0;transition:opacity .35s;background:linear-gradient(135deg,rgba(181,126,196,.13),rgba(111,164,208,.11),rgba(94,189,178,.1))}
+.pc:hover .pcibg{opacity:1}
+.pcem{position:relative;z-index:1;transition:transform .3s}
+.pc:hover .pcem{transform:scale(1.07)}
+.pcb{padding:22px 20px 20px}
+.pccat{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.pcn{font-family:'Playfair Display',serif;font-weight:600;font-size:1.05rem;color:var(--ink);margin-bottom:7px;line-height:1.3}
+.pcd{font-size:.82rem;line-height:1.7;color:var(--soft);margin-bottom:16px}
+.pcf{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pcpr{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;color:var(--ink)}
+.pcwa{display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-size:.68rem;font-weight:500;padding:7px 14px;color:var(--ink);letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border2);transition:all .22s;background:transparent}
+.pcwa:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* ── MINDVALLEY PANEL ── */
+.mvwrap{display:grid;grid-template-columns:240px 1fr;gap:0;border:1px solid var(--border);background:var(--card);margin-top:52px;min-height:500px}
+.mvsidebar{border-right:1px solid var(--border);display:flex;flex-direction:column}
+.mvtab{display:flex;align-items:flex-start;gap:14px;padding:20px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;background:transparent;border-left:3px solid transparent;text-align:left}
+.mvtab:last-child{border-bottom:none}
+.mvtab.active{background:var(--bg);border-left-color:var(--ink)}
+.mvtab:hover:not(.active){background:var(--bg2)}
+.mvtab-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;opacity:.75}
+.mvtab-txt h4{font-family:'Playfair Display',serif;font-weight:600;font-size:.95rem;color:var(--ink);margin-bottom:3px}
+.mvtab-txt p{font-size:.74rem;line-height:1.5;color:var(--soft)}
+.mvpanel{display:none;padding:36px 32px;flex-direction:column}
+.mvpanel.active{display:flex}
+.mvpanel-label{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.mvpanel-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:var(--ink);margin-bottom:10px;letter-spacing:-.3px}
+.mvpanel-sub{font-size:.88rem;line-height:1.9;color:var(--soft);max-width:500px;margin-bottom:28px}
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.mc{padding:18px;background:var(--bg);border:1px solid var(--border);transition:border-color .2s}
+.mc:hover{border-color:var(--border2)}
+.mc-icon{font-size:1.2rem;margin-bottom:8px;display:block;opacity:.75}
+.mc-title{font-family:'Playfair Display',serif;font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:5px}
+.mc-desc{font-size:.78rem;line-height:1.65;color:var(--soft)}
+.mc-tag{display:inline-block;margin-top:8px;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border2);padding-bottom:2px}
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.rc{display:flex;gap:14px;padding:18px;background:var(--bg);border:1px solid var(--border);transition:border-color .2s}
+.rc:hover{border-color:var(--border2)}
+.rc-cov{width:50px;height:64px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:var(--bg2);border:1px solid var(--border)}
+.rc-lbl{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.rc-ttl{font-family:'Playfair Display',serif;font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:3px}
+.rc-aut{font-size:.76rem;color:var(--soft);margin-bottom:10px}
+.rc-dl{display:inline-flex;align-items:center;gap:4px;text-decoration:none;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:1px;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--border2);padding-bottom:1px;transition:all .2s}
+.rc-dl:hover{color:var(--ink);border-color:var(--ink)}
+.comlist{display:flex;flex-direction:column;border:1px solid var(--border)}
+.comi{display:flex;gap:18px;align-items:flex-start;padding:20px;border-bottom:1px solid var(--border);background:var(--bg);transition:background .2s}
+.comi:last-child{border-bottom:none}
+.comi:hover{background:var(--bg2)}
+.comi-num{font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:var(--muted);min-width:20px}
+.comi h4{font-family:'Playfair Display',serif;font-weight:600;font-size:.92rem;color:var(--ink);margin-bottom:3px}
+.comi p{font-size:.78rem;line-height:1.65;color:var(--soft)}
+.dpgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dpc{padding:22px;background:var(--bg);border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color .2s}
+.dpc:hover{border-color:var(--border2)}
+.dpc-ir{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2,#8FBF68)}
+.dpc-icon{font-size:1.3rem;margin-bottom:10px;display:block;opacity:.75}
+.dpc-name{font-family:'Playfair Display',serif;font-weight:600;font-size:.95rem;color:var(--ink);margin-bottom:5px}
+.dpc-desc{font-size:.78rem;line-height:1.65;color:var(--soft);margin-bottom:12px}
+.dpc-price{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:12px}
+.dpc-btn{display:inline-flex;align-items:center;gap:5px;text-decoration:none;font-size:.68rem;font-weight:500;padding:7px 14px;color:var(--ink);letter-spacing:1.5px;text-transform:uppercase;border:1px solid var(--border2);transition:all .22s;background:transparent}
+.dpc-btn:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* ── MISSION ── */
+.mwrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:60px}
+.mq{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.5vw,1.75rem);line-height:1.7;color:var(--ink);padding-top:8px}
+.mb p{font-size:.88rem;line-height:1.95;color:var(--soft);margin-bottom:15px}
+.vtags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.vt{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);border:1px solid var(--border2);padding:7px 14px;transition:all .2s;cursor:default}
+.vt:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ════════════════════════════════
+   SUBSCRIPTION SECTION
+════════════════════════════════ */
+.sub-sec{
+  padding:120px 24px;
+  background:linear-gradient(160deg,#EDE5D5 0%,#F1EDE4 50%,#E8E1D3 100%);
+  position:relative;overflow:hidden;
+}
+.sub-orb1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(181,126,196,.14),transparent 70%);top:-150px;right:-100px;pointer-events:none;filter:blur(80px)}
+.sub-orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(111,164,208,.12),transparent 70%);bottom:-100px;left:-80px;pointer-events:none;filter:blur(80px)}
+.sub-inner{
+  max-width:660px;margin:0 auto;position:relative;z-index:1;
+}
+.sub-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:32px;
+}
+.sub-badge::before,.sub-badge::after{content:'✦';color:var(--ir1);font-size:.7rem}
+.sub-title{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.08;
+  color:var(--ink);margin-bottom:10px;letter-spacing:-.5px;
+}
+.sub-title em{font-style:italic;font-weight:400}
+.sub-rule{width:48px;height:1px;background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2);margin:28px 0}
+.sub-desc{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:1.15rem;line-height:1.85;color:var(--soft);margin-bottom:40px;
+}
+.sub-perks{display:flex;flex-direction:column;gap:12px;margin-bottom:44px}
+.sub-perk{display:flex;align-items:flex-start;gap:14px}
+.sub-perk-dot{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem;
+  background:linear-gradient(135deg,#B57EC4,#6FA4D0);color:#fff;
+}
+.sub-perk-txt strong{font-size:.88rem;font-weight:600;color:var(--ink);display:block;margin-bottom:2px}
+.sub-perk-txt span{font-size:.8rem;color:var(--soft)}
+
+/* FORM */
+.sub-form{background:var(--card);border:1px solid var(--border);padding:40px 36px}
+.sub-form-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--ink);margin-bottom:6px}
+.sub-form-sub{font-size:.84rem;color:var(--soft);margin-bottom:28px;line-height:1.6}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.frow.one{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--mid)}
+.fg input,.fg select{
+  border:1px solid var(--border2);background:var(--bg);
+  padding:12px 14px;font-size:.88rem;font-family:'Inter',sans-serif;color:var(--ink);
+  outline:none;transition:border-color .2s;border-radius:2px;
+}
+.fg input:focus,.fg select:focus{border-color:var(--ink)}
+.fg input::placeholder{color:var(--muted)}
+.fg select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A8278' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.sub-check{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px}
+.sub-check input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--ink);cursor:pointer}
+.sub-check label{font-size:.8rem;color:var(--soft);line-height:1.55;cursor:pointer}
+.sub-check label a{color:var(--ink);text-decoration:underline}
+.sub-btn{
+  width:100%;padding:16px;background:var(--ink);color:var(--bg);border:none;cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  transition:all .3s;
+}
+.sub-btn:hover{background:var(--mid)}
+.sub-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:14px}
+
+/* SUCCESS STATE */
+.sub-success{
+  display:none;text-align:center;padding:48px 32px;
+  background:var(--card);border:1px solid var(--border);
+}
+.sub-success.show{display:block}
+.sub-form.hidden{display:none}
+.success-icon{font-size:3rem;margin-bottom:20px;display:block}
+.success-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:var(--ink);margin-bottom:10px}
+.success-sub{font-size:.88rem;line-height:1.8;color:var(--soft);margin-bottom:28px}
+.success-ir{
+  display:inline-block;
+  font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;
+  background:linear-gradient(90deg,#B57EC4,#6FA4D0,#5EBDB2,#C8A06A);
+  background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:irs 5s linear infinite;
+}
+
+/* ════════════════════════════════
+   WHATSAPP WIDGET
+════════════════════════════════ */
+#wa-widget{position:fixed;bottom:28px;right:28px;z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+
+/* tooltip bubble */
+.wa-tooltip{
+  background:var(--card);border:1px solid var(--border);
+  padding:14px 18px;max-width:220px;position:relative;
+  box-shadow:0 8px 28px rgba(40,35,26,.1);
+  animation:fu .5s .8s both;
+}
+.wa-tooltip::after{
+  content:'';position:absolute;bottom:-8px;right:20px;
+  border-left:8px solid transparent;border-right:8px solid transparent;
+  border-top:8px solid var(--border);
+}
+.wa-tooltip::before{
+  content:'';position:absolute;bottom:-6px;right:21px;
+  border-left:7px solid transparent;border-right:7px solid transparent;
+  border-top:7px solid var(--card);z-index:1;
+}
+.wa-tooltip p{font-size:.8rem;line-height:1.55;color:var(--mid)}
+.wa-tooltip strong{font-family:'Playfair Display',serif;font-size:.85rem;color:var(--ink);display:block;margin-bottom:3px}
+.wa-tooltip .wa-close{
+  position:absolute;top:6px;right:8px;background:none;border:none;cursor:pointer;
+  font-size:.8rem;color:var(--muted);line-height:1;
+}
+.wa-tooltip .wa-close:hover{color:var(--ink)}
+
+/* main button */
+.wa-btn{
+  width:58px;height:58px;border-radius:50%;background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);
+  text-decoration:none;transition:all .3s;position:relative;
+  animation:fu .5s .5s both;
+}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,.5)}
+.wa-btn svg{width:30px;height:30px;fill:#fff}
+
+/* pulse ring */
+.wa-btn::before{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(37,211,102,.4);
+  animation:pulse 2.5s ease-out infinite;
+}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+
+/* quick options panel */
+.wa-panel{
+  display:none;background:var(--card);border:1px solid var(--border);
+  width:260px;box-shadow:0 12px 40px rgba(40,35,26,.12);
+}
+.wa-panel.open{display:block}
+.wa-panel-head{
+  background:var(--green);padding:14px 16px;display:flex;align-items:center;gap:10px;
+}
+.wa-panel-av{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.wa-panel-info h4{font-family:'Playfair Display',serif;font-size:.95rem;color:#fff;font-weight:600}
+.wa-panel-info p{font-size:.72rem;color:rgba(255,255,255,.75)}
+.wa-panel-body{padding:16px}
+.wa-panel-label{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.wa-option{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:6px;
+  background:var(--bg);border:1px solid var(--border);cursor:pointer;
+  text-decoration:none;transition:all .2s;
+}
+.wa-option:last-child{margin-bottom:0}
+.wa-option:hover{background:var(--bg2);border-color:var(--border2)}
+.wa-option-icon{font-size:1rem;flex-shrink:0}
+.wa-option-txt strong{font-size:.82rem;font-weight:600;color:var(--ink);display:block}
+.wa-option-txt span{font-size:.74rem;color:var(--soft)}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);padding:70px 24px 38px;text-align:center}
+.flogo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.9rem;letter-spacing:.5px;margin-bottom:8px;background:linear-gradient(90deg,#E8D4A0,#B57EC4,#6FA4D0,#5EBDB2,#E8D4A0);background-size:250%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:irs 9s linear infinite}
+.ftag{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(247,244,238,.35);margin-bottom:36px}
+.flinks{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.flinks a{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:rgba(247,244,238,.3);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:rgba(247,244,238,.75)}
+.frule{height:1px;background:rgba(247,244,238,.07);margin-bottom:24px}
+.fcopy{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(247,244,238,.18)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nl,.nwa{display:none}.ntog{display:flex}
+  .fwrap,.mwrap{grid-template-columns:1fr;gap:36px}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .mvwrap{grid-template-columns:1fr}
+  .mvsidebar{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--border)}
+  .mvtab{border-left:none;border-bottom:3px solid transparent;padding:14px 16px;flex-direction:column;gap:4px;min-width:110px}
+  .mvtab.active{border-left:none;border-bottom-color:var(--ink)}
+  .mvpanel{padding:24px 18px}
+  .mgrid,.rgrid,.dpgrid{grid-template-columns:1fr}
+  .istrip{flex-wrap:wrap}
+  .ii{flex:calc(50% - 1px)}
+  .frow{grid-template-columns:1fr}
+  .sub-inner{padding:0 8px}
+  .sub-form{padding:28px 20px}
+}
+@media(max-width:520px){
+  .cgrid{grid-template-columns:1fr}
+  .hbtns{flex-direction:column;align-items:center}
+  .hero h1{font-size:3.4rem}
+  .wa-panel{width:240px}
+}
+</style>
 </head>
 <body>
-  <h1>Bienvenida a Cleoo Beeha</h1>
-  <p>Tu transformación comienza aquí.</p>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#inicio">Cleoo <span>Beeha</span></a>
+  <ul class="nl">
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#transformacion">Transformación</a></li>
+    <li><a href="#comunidad">Comunidad</a></li>
+    <li><a href="#nosotras">Nosotras</a></li>
+  </ul>
+  <a href="https://wa.me/5215530702640" class="nwa" target="_blank">🐝 WhatsApp</a>
+  <button class="ntog" onclick="document.getElementById('mm').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mmenu" id="mm">
+  <a href="#catalogo" onclick="document.getElementById('mm').classList.remove('open')">Catálogo</a>
+  <a href="#transformacion" onclick="document.getElementById('mm').classList.remove('open')">Transformación</a>
+  <a href="#comunidad" onclick="document.getElementById('mm').classList.remove('open')">Comunidad</a>
+  <a href="#nosotras" onclick="document.getElementById('mm').classList.remove('open')">Nosotras</a>
+  <a href="https://wa.me/5215530702640" target="_blank">🐝 Pedir por WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="horb horb1"></div><div class="horb horb2"></div><div class="horb horb3"></div>
+  <div class="bot" style="top:17%;left:5%;font-size:1.5rem;opacity:.14;animation-duration:7s">🌿</div>
+  <div class="bot" style="top:24%;right:7%;font-size:1rem;opacity:.12;animation-duration:9s;animation-delay:2s">✦</div>
+  <div class="bot" style="bottom:20%;left:10%;font-size:1.2rem;opacity:.13;animation-duration:11s;animation-delay:1s">🍯</div>
+  <div class="bot" style="bottom:28%;right:9%;font-size:.9rem;opacity:.11;animation-duration:8s;animation-delay:3s">🌸</div>
+  <div class="eyb">Cosméticos Conscientes · Apícola · Transformación Diaria</div>
+  <h1>Belleza<br><em class="irt">que transforma</em></h1>
+  <div class="hrule"></div>
+  <p class="hsub">Inspirados en Cleopatra. Formulados con la pureza de la colmena.</p>
+  <div class="hbtns">
+    <a href="#catalogo" class="bdk">Ver catálogo</a>
+    <a href="#comunidad" class="bol">Únete a la comunidad</a>
+  </div>
+</section>
+
+<div class="ruir"></div>
+
+<!-- INGREDIENT STRIP -->
+<div class="istrip">
+  <div class="ii"><span class="ii-em">🍯</span><div class="ii-nm">Miel Pura</div><div class="ii-nt">Hidratación</div><div class="ii-line"></div></div>
+  <div class="ii"><span class="ii-em">🕯️</span><div class="ii-nm">Cera de Abeja</div><div class="ii-nt">Protección</div><div class="ii-line"></div></div>
+  <div class="ii"><span class="ii-em">🌿</span><div class="ii-nm">Propóleo</div><div class="ii-nt">Regeneración</div><div class="ii-line"></div></div>
+  <div class="ii"><span class="ii-em">💛</span><div class="ii-nm">Jalea Real</div><div class="ii-nt">Anti-edad</div><div class="ii-line"></div></div>
+  <div class="ii"><span class="ii-em">🌸</span><div class="ii-nm">Polen</div><div class="ii-nt">Nutrición celular</div><div class="ii-line"></div></div>
+</div>
+<div class="rule"></div>
+
+<!-- FEATURED -->
+<section class="sec" id="destacado">
+  <div class="con">
+    <div class="slb">Producto del mes</div>
+    <div class="fwrap">
+      <div class="fimg">🍯<div class="fbadge">Destacado</div></div>
+      <div>
+        <div class="ftag">Hidratación · Rostro · Apícola</div>
+        <h3 class="fh3">Sérum Miel<br>de Cleopatra</h3>
+        <p class="fp">Miel pura, propóleo y aceite de argán. Hidratación profunda que ilumina y regenera tu piel desde adentro. La esencia de la reina del Nilo — ahora en tu rutina diaria.</p>
+        <div class="fprice">$380 MXN <span>· 30 ml</span></div>
+        <a href="https://wa.me/5215530702640?text=Hola!%20Me%20interesa%20el%20Sérum%20Miel%20de%20Cleopatra" class="bdk" target="_blank">Pedir por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="rule"></div>
+
+<!-- CATALOG -->
+<section class="sec sc2" id="catalogo">
+  <div class="con">
+    <div class="slb">Catálogo completo</div>
+    <h2 class="stl">Cada producto, <span class="irt">un ritual</span></h2>
+    <p class="ssb">Ingredientes conscientes, apícolas y naturales. Solicita por WhatsApp.</p>
+    <div class="cgrid">
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">🕯️</span></div><div class="pcb"><div class="pccat">Labios · Apícola</div><div class="pcn">Bálsamo de Cera de Abeja</div><div class="pcd">Cera natural y karité. Labios nutridos todo el día.</div><div class="pcf"><span class="pcpr">$120 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20el%20Bálsamo%20de%20Cera" class="pcwa" target="_blank">Pedir</a></div></div></div>
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">🌺</span></div><div class="pcb"><div class="pccat">Rostro · Limpieza</div><div class="pcn">Mascarilla Floral de Propóleo</div><div class="pcd">Arcilla blanca, propóleo y rosas. Piel radiante en 15 minutos.</div><div class="pcf"><span class="pcpr">$220 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20la%20Mascarilla%20Floral" class="pcwa" target="_blank">Pedir</a></div></div></div>
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">✨</span></div><div class="pcb"><div class="pccat">Cuerpo · Hidratación</div><div class="pcn">Crema Corporal Reina del Nilo</div><div class="pcd">Aceite de oliva, miel y leche. El ritual de Cleopatra.</div><div class="pcf"><span class="pcpr">$280 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20la%20Crema%20Corporal" class="pcwa" target="_blank">Pedir</a></div></div></div>
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">💆</span></div><div class="pcb"><div class="pccat">Cabello · Nutrición</div><div class="pcn">Aceite Capilar de Polen</div><div class="pcd">Polen de abeja, jojoba y vitamina E. Brillo desde la raíz.</div><div class="pcf"><span class="pcpr">$195 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20el%20Aceite%20Capilar" class="pcwa" target="_blank">Pedir</a></div></div></div>
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">🌿</span></div><div class="pcb"><div class="pccat">Rostro · Contorno</div><div class="pcn">Contorno de Ojos Jalea Real</div><div class="pcd">Jalea real, retinol y péptidos. Reduce líneas visiblemente.</div><div class="pcf"><span class="pcpr">$310 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20el%20Contorno%20de%20Ojos" class="pcwa" target="_blank">Pedir</a></div></div></div>
+      <div class="pc"><div class="pci"><div class="pcibg"></div><span class="pcem">🧴</span></div><div class="pcb"><div class="pccat">Cuerpo · Exfoliante</div><div class="pcn">Exfoliante Miel & Sal del Mar</div><div class="pcd">Sal del Himalaya, miel y coco. Renueva con suavidad.</div><div class="pcf"><span class="pcpr">$185 MXN</span><a href="https://wa.me/5215530702640?text=Quiero%20el%20Exfoliante" class="pcwa" target="_blank">Pedir</a></div></div></div>
+    </div>
+  </div>
+</section>
+<div class="ruir"></div>
+
+<!-- TRANSFORMATION -->
+<section class="sec" id="transformacion">
+  <div class="con">
+    <div class="slb">Espacio de crecimiento diario</div>
+    <h2 class="stl">Tu <span class="irt">gimnasio de brainfulness</span></h2>
+    <p class="ssb" style="margin-bottom:0">Un espacio de transformación que crece contigo cada mañana — inspirado en Mindvalley, con la esencia de Cleoo Beeha.</p>
+    <div class="mvwrap">
+      <div class="mvsidebar">
+        <button class="mvtab active" onclick="mvShow('mind',this)"><span class="mvtab-icon">🧘</span><div class="mvtab-txt"><h4>Mindfulness</h4><p>Rituales de mañana</p></div></button>
+        <button class="mvtab" onclick="mvShow('lectura',this)"><span class="mvtab-icon">📚</span><div class="mvtab-txt"><h4>Lectura</h4><p>Club + workbooks</p></div></button>
+        <button class="mvtab" onclick="mvShow('comunidad-tab',this)"><span class="mvtab-icon">🌻</span><div class="mvtab-txt"><h4>Comunidad</h4><p>Espacio vivo</p></div></button>
+        <button class="mvtab" onclick="mvShow('digital',this)"><span class="mvtab-icon">💎</span><div class="mvtab-txt"><h4>Digital</h4><p>Guías y bitácoras</p></div></button>
+      </div>
+      <div class="mvpanel active" id="pnl-mind">
+        <div class="mvpanel-label">Gimnasio de Brainfulness</div>
+        <div class="mvpanel-title">Rituales de mañana</div>
+        <div class="mvpanel-sub">Antes de que el mundo te hable, tú te hablas primero. Prácticas activas, no meditación pasiva.</div>
+        <div class="mgrid">
+          <div class="mc"><span class="mc-icon">💧</span><div class="mc-title">Hidratación Consciente</div><div class="mc-desc">Ancla al presente que se activa cada vez que tomas agua.</div><span class="mc-tag">Video guiado</span></div>
+          <div class="mc"><span class="mc-icon">🙏</span><div class="mc-title">Práctica de Gratitud</div><div class="mc-desc">Tres agradecimientos profundos. Entrena tu mente para la abundancia.</div><span class="mc-tag">Audio · 5 min</span></div>
+          <div class="mc"><span class="mc-icon">🔥</span><div class="mc-title">Respiración + Priming</div><div class="mc-desc">Respiración de fuego, propiocepción e introspección vital.</div><span class="mc-tag">Video guiado</span></div>
+          <div class="mc"><span class="mc-icon">✍️</span><div class="mc-title">Journaling de Identidad</div><div class="mc-desc">Define quién estás siendo hoy. Tu yo futuro empieza aquí.</div><span class="mc-tag">Descargable</span></div>
+        </div>
+        <div style="margin-top:24px"><a href="https://wa.me/5215530702640?text=Quiero%20acceder%20al%20Gimnasio%20de%20Brainfulness" class="bdk" target="_blank">Solicitar acceso</a></div>
+      </div>
+      <div class="mvpanel" id="pnl-lectura">
+        <div class="mvpanel-label">Hábito de lectura</div>
+        <div class="mvpanel-title">Leer para actuar</div>
+        <div class="mvpanel-sub">Cada libro viene con workbook y debate que lo convierte en acción concreta.</div>
+        <div class="rgrid">
+          <div class="rc"><div class="rc-cov">📘</div><div><div class="rc-lbl">Leyendo ahora</div><div class="rc-ttl">El poder de los hábitos</div><div class="rc-aut">Charles Duhigg</div><a href="https://wa.me/5215530702640?text=Quiero%20el%20workbook" class="rc-dl" target="_blank">Workbook gratis →</a></div></div>
+          <div class="rc"><div class="rc-cov">📗</div><div><div class="rc-lbl">Próximo</div><div class="rc-ttl">Mindset: La actitud del éxito</div><div class="rc-aut">Carol Dweck</div><a href="https://wa.me/5215530702640?text=Quiero%20reservar" class="rc-dl" target="_blank">Reservar lugar →</a></div></div>
+          <div class="rc"><div class="rc-cov">📙</div><div><div class="rc-lbl">Leído · Bitácora disponible</div><div class="rc-ttl">Atomic Habits</div><div class="rc-aut">James Clear</div><a href="https://wa.me/5215530702640?text=Quiero%20la%20bitácora" class="rc-dl" target="_blank">Bitácora →</a></div></div>
+          <div class="rc"><div class="rc-cov">📕</div><div><div class="rc-lbl">Leído · Bitácora disponible</div><div class="rc-ttl">La magia del orden</div><div class="rc-aut">Marie Kondo</div><a href="https://wa.me/5215530702640?text=Quiero%20la%20bitácora%20Kondo" class="rc-dl" target="_blank">Bitácora →</a></div></div>
+        </div>
+      </div>
+      <div class="mvpanel" id="pnl-comunidad-tab">
+        <div class="mvpanel-label">Comunidad viva</div>
+        <div class="mvpanel-title">Crece en colectivo</div>
+        <div class="mvpanel-sub">Crecimiento personal como práctica diaria compartida, no como teoría acumulada.</div>
+        <div class="comlist">
+          <div class="comi"><span class="comi-num">I</span><div><h4>Debates de Growth Mindset</h4><p>Sesiones en vivo que convierten lo leído en decisiones concretas.</p></div></div>
+          <div class="comi"><span class="comi-num">II</span><div><h4>Retos semanales de hábitos</h4><p>Un hábito por semana en colectivo. La disciplina florece en comunidad.</p></div></div>
+          <div class="comi"><span class="comi-num">III</span><div><h4>Disertaciones personales</h4><p>Comparte tu transformación. Tu historia es la semilla de alguien más.</p></div></div>
+          <div class="comi"><span class="comi-num">IV</span><div><h4>Acceso anticipado</h4><p>Miembros reciben primero cursos, workbooks y lanzamientos de productos.</p></div></div>
+        </div>
+        <div style="margin-top:24px"><a href="#comunidad" class="bdk">Unirme a la comunidad</a></div>
+      </div>
+      <div class="mvpanel" id="pnl-digital">
+        <div class="mvpanel-label">Tienda digital</div>
+        <div class="mvpanel-title">Recursos para crecer</div>
+        <div class="mvpanel-sub">Guías, bitácoras y packs que complementan tu transformación. Pídelos por WhatsApp.</div>
+        <div class="dpgrid">
+          <div class="dpc"><div class="dpc-ir"></div><span class="dpc-icon">📓</span><div class="dpc-name">Bitácora 30 días</div><div class="dpc-desc">Seguimiento diario de rituales, lecturas y victorias.</div><div class="dpc-price">$120 MXN</div><a href="https://wa.me/5215530702640?text=Quiero%20la%20Bitácora%2030%20días" class="dpc-btn" target="_blank">Pedir</a></div>
+          <div class="dpc"><div class="dpc-ir"></div><span class="dpc-icon">🎧</span><div class="dpc-name">Pack Audio: Meditaciones AM</div><div class="dpc-desc">6 audios de 5–12 min para tu gimnasio de brainfulness.</div><div class="dpc-price">$180 MXN</div><a href="https://wa.me/5215530702640?text=Quiero%20el%20Pack%20Meditaciones" class="dpc-btn" target="_blank">Pedir</a></div>
+          <div class="dpc"><div class="dpc-ir"></div><span class="dpc-icon">📋</span><div class="dpc-name">Workbook: Identidad & Metas</div><div class="dpc-desc">Define quién eres, qué quieres y cómo llegar.</div><div class="dpc-price">$150 MXN</div><a href="https://wa.me/5215530702640?text=Quiero%20el%20Workbook%20Identidad" class="dpc-btn" target="_blank">Pedir</a></div>
+          <div class="dpc"><div class="dpc-ir"></div><span class="dpc-icon">🌿</span><div class="dpc-name">Guía: Rutina Consciente</div><div class="dpc-desc">Rituales de belleza interior y exterior integrados.</div><div class="dpc-price">$90 MXN</div><a href="https://wa.me/5215530702640?text=Quiero%20la%20Guía%20Rutina" class="dpc-btn" target="_blank">Pedir</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="rule"></div>
+
+<!-- ══ SUBSCRIPTION SECTION ══ -->
+<section class="sub-sec" id="comunidad">
+  <div class="sub-orb1"></div><div class="sub-orb2"></div>
+  <div class="sub-inner">
+
+    <!-- LEFT COPY -->
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="sub-badge">Comunidad Cleoo Beeha</div>
+      <h2 class="sub-title serif">Eres <em class="irt">bienvenida</em><br>a nuestro círculo</h2>
+      <div class="sub-rule"></div>
+      <p class="sub-desc">
+        Únete a una comunidad de mujeres que se cuidan por dentro y por fuera. Recibirás contenido exclusivo, acceso anticipado a productos, rituales de brainfulness y promociones que no publicamos en ningún otro lugar.
+      </p>
+      <div class="sub-perks" style="max-width:440px;margin:0 auto 0">
+        <div class="sub-perk">
+          <div class="sub-perk-dot">✦</div>
+          <div class="sub-perk-txt">
+            <strong>Contenido exclusivo de transformación</strong>
+            <span>Rituales, audios, workbooks y guías solo para miembros.</span>
+          </div>
+        </div>
+        <div class="sub-perk">
+          <div class="sub-perk-dot">🍯</div>
+          <div class="sub-perk-txt">
+            <strong>Promociones y lanzamientos anticipados</strong>
+            <span>Tú eres la primera en saber — y en aprovechar.</span>
+          </div>
+        </div>
+        <div class="sub-perk">
+          <div class="sub-perk-dot">🌿</div>
+          <div class="sub-perk-txt">
+            <strong>Comunidad viva de crecimiento</strong>
+            <span>Retos semanales, debates y disertaciones en grupo.</span>
+          </div>
+        </div>
+        <div class="sub-perk">
+          <div class="sub-perk-dot">🐝</div>
+          <div class="sub-perk-txt">
+            <strong>Atención personalizada por WhatsApp</strong>
+            <span>Orientación directa de nuestro equipo cuando la necesites.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="sub-form" id="subForm">
+      <div class="sub-form-title serif">Crea tu perfil de miembro</div>
+      <p class="sub-form-sub">Tarda menos de 2 minutos. Una vez que confirmes, recibirás acceso inmediato a tu espacio.</p>
+      <div class="frow">
+        <div class="fg">
+          <label for="fname">Nombre</label>
+          <input type="text" id="fname" placeholder="Tu nombre">
+        </div>
+        <div class="fg">
+          <label for="flname">Apellido</label>
+          <input type="text" id="flname" placeholder="Tu apellido">
+        </div>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label for="femail">Correo electrónico</label>
+          <input type="email" id="femail" placeholder="hola@tucorreo.com">
+        </div>
+        <div class="fg">
+          <label for="fphone">WhatsApp</label>
+          <input type="tel" id="fphone" placeholder="55 1234 5678">
+        </div>
+      </div>
+      <div class="frow one">
+        <div class="fg">
+          <label for="finterest">¿Qué te interesa más?</label>
+          <select id="finterest">
+            <option value="" disabled selected>Elige una opción</option>
+            <option>Cosméticos y rituales de belleza</option>
+            <option>Gimnasio de Brainfulness</option>
+            <option>Club de lectura y workbooks</option>
+            <option>Comunidad y crecimiento personal</option>
+            <option>Todo lo anterior</option>
+          </select>
+        </div>
+      </div>
+      <div class="frow one">
+        <div class="fg">
+          <label for="fcity">Ciudad</label>
+          <input type="text" id="fcity" placeholder="Ciudad de México">
+        </div>
+      </div>
+      <div class="sub-check">
+        <input type="checkbox" id="fterms">
+        <label for="fterms">Acepto recibir contenido exclusivo, promociones y novedades de Cleoo Beeha por correo y WhatsApp. Puedo cancelar cuando quiera. Consulta nuestra <a href="#">política de privacidad</a>.</label>
+      </div>
+      <button class="sub-btn" onclick="submitForm()">Confirmar y acceder a la comunidad →</button>
+      <p class="sub-note">Sin spam. Sin costos ocultos. Solo contenido que nutre.</p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="sub-success" id="subSuccess">
+      <span class="success-icon">🍯</span>
+      <div class="success-title serif">¡Bienvenida al círculo!</div>
+      <p class="success-sub">Tu espacio está listo. En los próximos minutos recibirás un mensaje de WhatsApp con tu acceso y un regalo de bienvenida de la comunidad Cleoo Beeha.</p>
+      <span class="success-ir">Eres parte de algo que transforma.</span>
+      <div style="margin-top:32px">
+        <a href="https://wa.me/5215530702640?text=Hola!%20Acabo%20de%20unirme%20a%20la%20comunidad%20Cleoo%20Beeha%20🍯" class="bdk" target="_blank" style="display:inline-flex">Ir a WhatsApp ahora →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="sec sc3" id="nosotras">
+  <div class="con">
+    <div class="slb">Nuestra esencia</div>
+    <h2 class="stl">Por qué <span class="irt">Cleoo Beeha</span></h2>
+    <div class="mwrap">
+      <div><p class="mq">"Cleopatra no solo fue bella — fue estratégica, sabia y poderosa. Sus rituales eran rituales de poder. Eso somos nosotras."</p></div>
+      <div class="mb">
+        <p><strong>Cleoo</strong> honra a Cleopatra — la reina que entendió que cuidarse es un acto de poder, no de vanidad.</p>
+        <p><strong>Beeha</strong> celebra a las abejas — las trabajadoras que crean lo más puro de la naturaleza con precisión, comunidad y propósito.</p>
+        <p>Nuestra cosmética es consciente porque lo que pones en tu piel y lo que cultivas en tu mente son igualmente sagrados.</p>
+        <div class="vtags">
+          <span class="vt">Ingredientes puros</span><span class="vt">Cruelty-free</span><span class="vt">Apícola</span><span class="vt">Holístico</span><span class="vt">Hecho en México</span><span class="vt">Transformación real</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Cleoo Beeha</div>
+  <p class="ftag">Cosméticos Conscientes · Transformación Diaria · Inspirados en Cleopatra</p>
+  <div class="flinks">
+    <a href="#catalogo">Catálogo</a>
+    <a href="#transformacion">Transformación</a>
+    <a href="#comunidad">Comunidad</a>
+    <a href="#nosotras">Nosotras</a>
+    <a href="https://wa.me/5215530702640" target="_blank">WhatsApp</a>
+  </div>
+  <div class="frule"></div>
+  <p class="fcopy">© 2026 Cleoo Beeha · cleoobeeha.com · Hecho con 🍯 en México</p>
+</footer>
+
+<!-- ══ WHATSAPP WIDGET ══ -->
+<div id="wa-widget">
+  <div class="wa-panel" id="waPanel">
+    <div class="wa-panel-head">
+      <div class="wa-panel-av">🐝</div>
+      <div class="wa-panel-info">
+        <h4>Cleoo Beeha</h4>
+        <p>Responde en minutos</p>
+      </div>
+    </div>
+    <div class="wa-panel-body">
+      <div class="wa-panel-label">¿En qué te ayudamos?</div>
+      <a class="wa-option" href="https://wa.me/5215530702640?text=Hola!%20Quiero%20información%20sobre%20un%20producto" target="_blank">
+        <span class="wa-option-icon">🛍️</span>
+        <div class="wa-option-txt"><strong>Ver productos</strong><span>Cosméticos y rituales</span></div>
+      </a>
+      <a class="wa-option" href="https://wa.me/5215530702640?text=Hola!%20Quiero%20acceder%20al%20Gimnasio%20de%20Brainfulness" target="_blank">
+        <span class="wa-option-icon">🧘</span>
+        <div class="wa-option-txt"><strong>Brainfulness</strong><span>Rituales y meditaciones</span></div>
+      </a>
+      <a class="wa-option" href="https://wa.me/5215530702640?text=Hola!%20Quiero%20unirme%20a%20la%20comunidad%20Cleoo%20Beeha" target="_blank">
+        <span class="wa-option-icon">🌻</span>
+        <div class="wa-option-txt"><strong>Unirme a la comunidad</strong><span>Acceso y membresía</span></div>
+      </a>
+      <a class="wa-option" href="https://wa.me/5215530702640?text=Hola!%20Tengo%20una%20pregunta%20general" target="_blank">
+        <span class="wa-option-icon">💬</span>
+        <div class="wa-option-txt"><strong>Otra consulta</strong><span>Atención personalizada</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="wa-tooltip" id="waTooltip">
+    <button class="wa-close" onclick="document.getElementById('waTooltip').style.display='none'">✕</button>
+    <strong>¿Necesitas ayuda?</strong>
+    <p>Chatea con nosotras ahora por WhatsApp 🍯</p>
+  </div>
+
+  <a class="wa-btn" href="#" onclick="toggleWaPanel(event)" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<script>
+// NAV
+document.getElementById('mm').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mm').classList.remove('open')));
+
+// MINDVALLEY TABS
+function mvShow(id,btn){
+  document.querySelectorAll('.mvpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mvtab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pnl-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// WHATSAPP PANEL
+function toggleWaPanel(e){
+  e.preventDefault();
+  const p=document.getElementById('waPanel');
+  const t=document.getElementById('waTooltip');
+  p.classList.toggle('open');
+  if(p.classList.contains('open'))t.style.display='none';
+}
+
+// SUBSCRIPTION FORM
+function submitForm(){
+  const name=document.getElementById('fname').value.trim();
+  const email=document.getElementById('femail').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const terms=document.getElementById('fterms').checked;
+  if(!name){alert('Por favor ingresa tu nombre.');return}
+  if(!email||!email.includes('@')){alert('Por favor ingresa un correo válido.');return}
+  if(!phone){alert('Por favor ingresa tu WhatsApp.');return}
+  if(!terms){alert('Acepta los términos para continuar.');return}
+  // In production: send to your backend / Mailchimp / Airtable here
+  document.getElementById('subForm').classList.add('hidden');
+  document.getElementById('subSuccess').classList.add('show');
+  // Scroll to success
+  document.getElementById('subSuccess').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// Auto-hide tooltip after 5s
+setTimeout(()=>{const t=document.getElementById('waTooltip');if(t)t.style.opacity='0';},5000);
+</script>
 </body>
 </html>
